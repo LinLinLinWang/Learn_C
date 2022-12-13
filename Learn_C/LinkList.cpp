@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
 #include<malloc.h>
 
@@ -31,10 +32,10 @@ void addLinkNode_head(LinkList& linklist, int elem) {
 }
 //带头结点尾插法
 
-void   addLinkNode_tail(LinkList& linklist, int elem,int nums) {
-	
+void   addLinkNode_tail(LinkList& linklist, int nums) {
+	int elem;
 	LinkNode* tail = linklist;
-	int elem = -99999;
+	
 	for (int i = 0; i < nums;i++) {
 		printf("使用尾插法插入结点,请输入第%d个结点值：",i+1);
 		scanf("%d",&elem);
@@ -71,7 +72,7 @@ void  Printf_LinkList(LinkList linklist) {
 //带头结点的链表指定位置插入操作
 void InsertLinkListByIndex(LinkList &linklist,int elem, int index) {
 	int j = 1;
-	LinkList p;//移动指针
+	LinkList p = linklist;//移动指针
 	while (p&&j<index) {
 		p = p->next;
 		j++;
@@ -94,12 +95,13 @@ void InsertLinkListByIndex(LinkList &linklist,int elem, int index) {
 void DeleteLinkListByIndex(LinkList & linklist, int &elem, int index) {
 	int j = 1;
 	LinkList p;//移动指针
-	while (p && j < index) {
+	p = linklist;
+	while ((p->next) && j < index) {
 		p = p->next;
 		j++;
 
 	}
-	if (!p || j > index) { //插入位置不合法。
+	if (!(p->next) || j > index) { //插入位置不合法。
 		printf("删除位置不合法！\n");
 		return;
 
@@ -116,6 +118,12 @@ void DeleteLinkListByIndex(LinkList & linklist, int &elem, int index) {
 
 int main() {
 
+	LinkList linklist;
+	InitLinkList(linklist);
+	int nums = 0;
+	printf("您想要创建几个结点的链表？\n");
+	scanf("%d",&nums);
 
+	addLinkNode_tail(linklist, nums);
 	return 0;
 }
