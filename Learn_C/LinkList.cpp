@@ -107,8 +107,12 @@ void DeleteLinkListByIndex(LinkList & linklist, int &elem, int index) {
 
 
 	}
+	LinkNode* del = p->next;
+	elem = del->elem;
+	p->next = del->next;
+	free(del);
 
-	LinkNode* s = p->next;
+
 
 }
 
@@ -125,5 +129,20 @@ int main() {
 	scanf("%d",&nums);
 
 	addLinkNode_tail(linklist, nums);
+	Printf_LinkList(linklist);
+
+	printf("您要删除第几个节点？");
+	int elem;
+	int index;
+	scanf("%d",&index);
+	DeleteLinkListByIndex(linklist,elem,index);
+	printf("删除的结点是%d\n",elem);
+	Printf_LinkList(linklist);
+	printf("您要增加节点的位置？节点值呢？");
+	int insertelem;
+	int insertindex;
+	scanf("%d %d",&insertindex,&insertelem);
+	InsertLinkListByIndex(linklist, insertelem,  insertindex);
+	Printf_LinkList(linklist);
 	return 0;
 }
