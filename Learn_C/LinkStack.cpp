@@ -17,9 +17,10 @@ void init_linkstack(LinkStack &linkstack) {
 
 }
 //入栈操作
-void push_linkstack(LinkStack &linkstack,int elem) {
+void push_linkstack(LinkStack& linkstack, int elem) {
 	LinkStackNode* newStackNode = (LinkStackNode*)malloc(sizeof(LinkStackNode));
-	if (!newStackNode) printf("分配空间失败！\n"); return;
+	if (!newStackNode) {printf("分配空间失败！\n"); return;}
+	printf("创建结点，初始化中。。");
 	newStackNode->elem = elem;
 	newStackNode->next = linkstack;
 	linkstack = newStackNode;
@@ -29,7 +30,7 @@ void push_linkstack(LinkStack &linkstack,int elem) {
 }
 //出栈操作
 void poplinkstack(LinkStack &linkstack,int &elem) {
-	if (linkstack == NULL) printf("链栈为空，禁止出栈操作!\n"); return;
+	if (linkstack == NULL) { printf("链栈为空，禁止出栈操作!\n"); return; }
 	LinkStack p = linkstack;
 	elem = linkstack->elem;
 	linkstack = linkstack->next;
@@ -39,7 +40,7 @@ void poplinkstack(LinkStack &linkstack,int &elem) {
 
 //链栈打印操作
 void printf_linkstack(LinkStack  linkstack) {
-
+	printf("开始打印");
 	while (linkstack)
 	{
 		printf("%d ",linkstack->elem);
@@ -61,8 +62,15 @@ int main() {
 		push_linkstack(linkstack, elem);
 	
 	}
-	printf("打印链栈，从顶到底分别为：\n");
+	printf("\n打印链栈，从顶到底分别为：\n");
 	printf_linkstack(linkstack);
-	
+	//出栈操作
+	for (i = 0; i <= 3; i++) {
+		
+		poplinkstack(linkstack, elem);
+		
+		printf("\n打印链栈，从顶到底分别为：\n");
+		printf_linkstack(linkstack);
+	}
 	return 0;
 }
