@@ -95,7 +95,7 @@ int main() {
 	int del = 0;
 	DeLinkQueue(linkqueue,del);
 	printf("被删除元素值为：%d\n",del);
-	printf();
+	printf("");
 	return 0;
 
 }
