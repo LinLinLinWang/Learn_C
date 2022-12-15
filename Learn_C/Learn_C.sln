@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LinkSack", "..\LinkList\Lin
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SqQueue", "..\SqQueue\SqQueue.vcxproj", "{F069F472-AA65-4A49-B518-6456445D7BE3}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LinkQueue", "..\LinkQueue\LinkQueue.vcxproj", "{104FC809-74D8-4B01-AA50-9EADC9BF5CE3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -41,6 +43,14 @@ Global
 		{F069F472-AA65-4A49-B518-6456445D7BE3}.Release|x64.Build.0 = Release|x64
 		{F069F472-AA65-4A49-B518-6456445D7BE3}.Release|x86.ActiveCfg = Release|Win32
 		{F069F472-AA65-4A49-B518-6456445D7BE3}.Release|x86.Build.0 = Release|Win32
+		{104FC809-74D8-4B01-AA50-9EADC9BF5CE3}.Debug|x64.ActiveCfg = Debug|x64
+		{104FC809-74D8-4B01-AA50-9EADC9BF5CE3}.Debug|x64.Build.0 = Debug|x64
+		{104FC809-74D8-4B01-AA50-9EADC9BF5CE3}.Debug|x86.ActiveCfg = Debug|Win32
+		{104FC809-74D8-4B01-AA50-9EADC9BF5CE3}.Debug|x86.Build.0 = Debug|Win32
+		{104FC809-74D8-4B01-AA50-9EADC9BF5CE3}.Release|x64.ActiveCfg = Release|x64
+		{104FC809-74D8-4B01-AA50-9EADC9BF5CE3}.Release|x64.Build.0 = Release|x64
+		{104FC809-74D8-4B01-AA50-9EADC9BF5CE3}.Release|x86.ActiveCfg = Release|Win32
+		{104FC809-74D8-4B01-AA50-9EADC9BF5CE3}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
