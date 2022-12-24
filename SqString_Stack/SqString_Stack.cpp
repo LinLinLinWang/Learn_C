@@ -154,7 +154,31 @@ void StrInsert(SqString_Stack& sqString, int pos, SqString_Stack s) {
 
 
 }
+//串删除(含pos位置)
+void DeleteString(SqString_Stack &sq,int pos,int len) {
+	if (len<1 || pos>(sq.length-len+1))
+	{
+		printf("删除失败，删除位置不合理\n");
 
+		return;
+	}
+	else {
+	
+		for (int i = pos+len; i <=sq.length; i++) {
+			sq.data[i-len] = sq.data[i];
+		
+		
+		}
+
+		sq.length = sq.length - len;
+
+	
+	}
+       
+
+
+
+}
 
 //打印串
 void Printf_String(SqString_Stack sqstring) {
@@ -179,6 +203,7 @@ int main() {
 	printf("请给主串赋值！按回车结束！\n");
 	InsertString(sqstring);
 	printf("打印主串。共有%d个值 。。。\n",sqstring.length);
+	/*
 	Printf_String(sqstring);
 	printf("请给子串赋值！按回车结束！\n");
 	InsertString(sstring);
@@ -187,6 +212,11 @@ int main() {
 	printf("执行插入操作！\n");
 	StrInsert(sqstring, -1, sstring);
 	printf("打印主串。共有%d个值 。。。\n", sqstring.length);
+	Printf_String(sqstring);
+	*/
+	printf("开始进行删除操作！\n");
+	DeleteString(sqstring,0,5);
+	printf("打印主串。共有%d个值。。。\n", sqstring.length);
 	Printf_String(sqstring);
 	return 0;
 
