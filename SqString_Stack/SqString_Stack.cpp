@@ -179,6 +179,66 @@ void DeleteString(SqString_Stack &sq,int pos,int len) {
 
 
 }
+//串的模式匹配（朴素比较）
+
+int Pattern_String(SqString_Stack &sq,SqString_Stack &patten,int &pos) {
+	int flag;
+	//位置初始定于主串头部
+	int j = 0;//主串待比较位置
+	int k = 0;//模式串待比较位置
+
+		j = pos;
+		
+		k = 0;
+		while (j<sq.length&&k<patten.length) {
+		          
+			if (sq.data[j] == patten.data[k]) {
+				j++;
+				k++;
+			   
+			}
+			else {
+				k = 0;
+				j = ++pos;
+				
+			
+			}
+		
+		
+		}
+	
+		if (k == patten.length) return pos;//匹配成功
+	
+		return -1;
+	
+
+
+}
+
+
+//串的模式匹配（未改进的kmp）
+//ABCDABDE
+//ABCDABFG
+// ijklmn
+//传统模式匹配，不匹配时，要将主串回溯，模式串回溯后，重新比较。
+// 但可能会出现多次不匹配的情况。浪费时间，该处花费时间可以降低，即找到比较位置前的最大公共前后缀
+//假设主串，字串各自回溯后，想要匹配成功，那么需要保证
+//回溯后的主串  //ABCDABDE
+                 //ABCDABFG，若要保证一一对应，则意味着主串BCDAB 与模式串ABCDA相等才行，干瞪眼看发现如果想要匹配成功，那么
+//待比较位置前的模式串2必须与待比较位置前的主串2匹配成功，同时因为主串回溯前比较位置前的所有字符1与模式串的所有字符2相等，
+//又因为所有字符2等于主串2，即模式串2=珠串2=所有字符1=所有字符2 。这便是最长公共前后缀。即存在最长公共前后缀的模式串可以
+//减少主串回溯次数
+
+//求next数组
+int* getNext(SqString_Stack pattern) {
+	int len = pattern.length;
+	int next[len] = { -1 };
+
+	return 
+}
+
+
+
 
 //打印串
 void Printf_String(SqString_Stack sqstring) {
@@ -192,7 +252,8 @@ printf("\n");
 
 }
 int main() {
-
+	int reslult=0;
+	int pos = 0;
 	SqString_Stack sqstring;
 	SqString_Stack  sstring;
 	printf("初始化串中。。。。\n");
@@ -213,11 +274,30 @@ int main() {
 	StrInsert(sqstring, -1, sstring);
 	printf("打印主串。共有%d个值 。。。\n", sqstring.length);
 	Printf_String(sqstring);
-	*/
+	
 	printf("开始进行删除操作！\n");
 	DeleteString(sqstring,0,5);
 	printf("打印主串。共有%d个值。。。\n", sqstring.length);
 	Printf_String(sqstring);
+	*/
+	Printf_String(sqstring);
+	printf("请给子串赋值！按回车结束！\n");
+	InsertString(sstring);
+	printf("打印主子串。共有%d个值。。。\n", sstring.length);
+	Printf_String(sstring);
+	printf("开始模式匹配！。。\n");
+	reslult=Pattern_String(sqstring, sstring, pos);
+	if (reslult!= -1) {
+		printf("模式匹配成功！在主串pos=%d处发现字串。。\n",pos);
+		
+
+	
+	}
+	else {
+		printf("模式匹配失败！\n");
+	
+	}
+
 	return 0;
 
 }
