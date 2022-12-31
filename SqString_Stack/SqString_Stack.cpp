@@ -216,25 +216,87 @@ int Pattern_String(SqString_Stack &sq,SqString_Stack &patten,int &pos) {
 }
 
 
-//串的模式匹配（未改进的kmp）
-//ABCDABDE
-//ABCDABFG
-// ijklmn
-//传统模式匹配，不匹配时，要将主串回溯，模式串回溯后，重新比较。
-// 但可能会出现多次不匹配的情况。浪费时间，该处花费时间可以降低，即找到比较位置前的最大公共前后缀
-//假设主串，字串各自回溯后，想要匹配成功，那么需要保证
-//回溯后的主串  //ABCDABDE
-                 //ABCDABFG，若要保证一一对应，则意味着主串BCDAB 与模式串ABCDA相等才行，干瞪眼看发现如果想要匹配成功，那么
-//待比较位置前的模式串2必须与待比较位置前的主串2匹配成功，同时因为主串回溯前比较位置前的所有字符1与模式串的所有字符2相等，
-//又因为所有字符2等于主串2，即模式串2=珠串2=所有字符1=所有字符2 。这便是最长公共前后缀。即存在最长公共前后缀的模式串可以
-//减少主串回溯次数
 
-//求next数组
+
+//求next数组  kmp尚未优化
 int* getNext(SqString_Stack pattern) {
 	int len = pattern.length;
-	int next[len] = { -1 };
+	int* next = (int*)malloc(sizeof(int) * pattern.length);
+	next[0] = -1;
+	if (pattern.length == 0)return NULL;
+	if (pattern.length==1) {
+		return next;
+	}
 
-	return 
+	
+	int i = -1;//当前j所指向位置（不 含当前元素）的最长公共前缀长度，也是j-1元素回退的位置
+	int j = 1;//
+	while (j<pattern.length) {
+		if (i == -1 || pattern.data[i] == pattern.data[j]) {
+			i++;
+			next[j] = i;
+			j++;
+		           
+		
+		
+		}
+		else {
+		
+			i = next[i];
+
+		}
+	
+	}
+	
+ 	return next;
+}
+
+//优化后的kmp  原因是kmp算法在比较字符串时 也会有个别冗余比较。
+
+int* getNext_After(SqString_Stack pattern) {
+	int len = pattern.length;
+	int* next = (int*)malloc(sizeof(int) * pattern.length);
+	next[0] = -1;
+	if (pattern.length == 0)return NULL;
+	if (pattern.length == 1) {
+		return next;
+	}
+
+
+	int i = -1;//当前j所指向位置（不 含当前元素）的最长公共前缀长度，也是j-1元素回退的位置
+	int j = 1;//
+
+	while (j < pattern.length) {
+		if (i == -1 || pattern.data[i] == pattern.data[j]) {
+			
+			if (pattern.data[i+1] == pattern.data[j]) {
+				i++;
+				next[j++] = next[i];
+			    
+			
+			
+			}
+			else {
+				next[j++] = ++i;
+			
+			
+			}
+
+
+		}
+		else {
+
+			i = next[i];
+
+		}
+		
+
+	}
+	return next;
+
+
+
+
 }
 
 
@@ -261,10 +323,10 @@ int main() {
 	InitString(sstring);
 	printf("初始化完毕。。。。\n");
 
-	printf("请给主串赋值！按回车结束！\n");
+	/*	printf("请给主串赋值！按回车结束！\n");
 	InsertString(sqstring);
 	printf("打印主串。共有%d个值 。。。\n",sqstring.length);
-	/*
+
 	Printf_String(sqstring);
 	printf("请给子串赋值！按回车结束！\n");
 	InsertString(sstring);
@@ -279,8 +341,9 @@ int main() {
 	DeleteString(sqstring,0,5);
 	printf("打印主串。共有%d个值。。。\n", sqstring.length);
 	Printf_String(sqstring);
-	*/
+	
 	Printf_String(sqstring);
+	*/
 	printf("请给子串赋值！按回车结束！\n");
 	InsertString(sstring);
 	printf("打印主子串。共有%d个值。。。\n", sstring.length);
@@ -297,6 +360,8 @@ int main() {
 		printf("模式匹配失败！\n");
 	
 	}
+	int* a;
+	 a=getNext_After(sstring);
 
 	return 0;
 
