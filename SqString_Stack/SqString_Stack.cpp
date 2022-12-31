@@ -313,6 +313,48 @@ while (sqstring.data[i] != '\0') {
 printf("\n");
 
 }
+
+//查找子串是否存在
+
+
+int IsExistPattern(SqString_Stack major,SqString_Stack pattern) {
+
+	
+	int i = 0;
+	int j = 0;
+	int* getnext = getNext_After(pattern);
+	while (i<major.length&&j<pattern.length) {
+		if (j==-1||major.data[i] == pattern.data[j]) {
+			i++;
+			j++;
+		
+		}
+		else {
+		
+			j = getnext[j];
+
+
+		
+		}
+		
+	
+	
+	}
+	if (j == pattern.length) {
+		return i - j;
+
+
+	}
+
+
+
+	return -1;
+
+}
+
+
+
+
 int main() {
 	int reslult=0;
 	int pos = 0;
@@ -323,7 +365,7 @@ int main() {
 	InitString(sstring);
 	printf("初始化完毕。。。。\n");
 
-	/*	printf("请给主串赋值！按回车结束！\n");
+	printf("请给主串赋值！按回车结束！\n");
 	InsertString(sqstring);
 	printf("打印主串。共有%d个值 。。。\n",sqstring.length);
 
@@ -332,7 +374,7 @@ int main() {
 	InsertString(sstring);
 	printf("打印主子串。共有%d个值。。。\n",sstring.length);
 	Printf_String(sstring);
-	printf("执行插入操作！\n");
+	/*printf("执行插入操作！\n");
 	StrInsert(sqstring, -1, sstring);
 	printf("打印主串。共有%d个值 。。。\n", sqstring.length);
 	Printf_String(sqstring);
@@ -343,11 +385,12 @@ int main() {
 	Printf_String(sqstring);
 	
 	Printf_String(sqstring);
-	*/
+	
 	printf("请给子串赋值！按回车结束！\n");
 	InsertString(sstring);
 	printf("打印主子串。共有%d个值。。。\n", sstring.length);
 	Printf_String(sstring);
+	*/
 	printf("开始模式匹配！。。\n");
 	reslult=Pattern_String(sqstring, sstring, pos);
 	if (reslult!= -1) {
@@ -360,8 +403,7 @@ int main() {
 		printf("模式匹配失败！\n");
 	
 	}
-	int* a;
-	 a=getNext_After(sstring);
+	printf("使用kmp匹配结果%d\n",IsExistPattern(sqstring, sstring));
 
 	return 0;
 
