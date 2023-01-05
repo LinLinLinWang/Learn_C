@@ -13,6 +13,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LinkQueue", "..\LinkQueue\L
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SqString_Stack", "..\SqString_Stack\SqString_Stack.vcxproj", "{4155CC14-E6EA-4BA9-8A73-988500AD73E9}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "图解算法", "..\图解算法\图解算法.vcxproj", "{B982F254-56A1-4B94-B25F-31195285564B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -61,6 +63,14 @@ Global
 		{4155CC14-E6EA-4BA9-8A73-988500AD73E9}.Release|x64.Build.0 = Release|x64
 		{4155CC14-E6EA-4BA9-8A73-988500AD73E9}.Release|x86.ActiveCfg = Release|Win32
 		{4155CC14-E6EA-4BA9-8A73-988500AD73E9}.Release|x86.Build.0 = Release|Win32
+		{B982F254-56A1-4B94-B25F-31195285564B}.Debug|x64.ActiveCfg = Debug|x64
+		{B982F254-56A1-4B94-B25F-31195285564B}.Debug|x64.Build.0 = Debug|x64
+		{B982F254-56A1-4B94-B25F-31195285564B}.Debug|x86.ActiveCfg = Debug|Win32
+		{B982F254-56A1-4B94-B25F-31195285564B}.Debug|x86.Build.0 = Debug|Win32
+		{B982F254-56A1-4B94-B25F-31195285564B}.Release|x64.ActiveCfg = Release|x64
+		{B982F254-56A1-4B94-B25F-31195285564B}.Release|x64.Build.0 = Release|x64
+		{B982F254-56A1-4B94-B25F-31195285564B}.Release|x86.ActiveCfg = Release|Win32
+		{B982F254-56A1-4B94-B25F-31195285564B}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
