@@ -37,50 +37,61 @@ void gcd(int a, int b) {
 
 
 //合并排序
-void mergePart(int* a, int low, int middle, int n) {
-	int i = low, j = middle + 1;
+
+
+
+void MergePart(int a[],int low,int middle,int high) {
+	int i = low;
+	int j = middle;
 	int k = 0;
-	int* b = new int[n - low + 1];
-	while (i <= middle && j <= n) {
-		if (a[i] <= a[j]) {
-			b[k] = a[i];
-			i++;
-			k++;
+	int *b = new(nothrow) int (high - low+1);
+	if (b == NULL) {
+		printf("内存分配失败！");
+		return;
+	}
+	while (i<=middle&&j<=high) {
+	
+		if (a[i]<=a[j]) {
+			b[k++] = a[i++];
+		
+		
+		}
+		else{
+			b[k++] = a[j++];
 
 		}
-		else {
-			b[k] = a[j];
-			k++;
-			j++;
+	
+		while (i <= middle) {
+			b[k++] = a[i++];
+
+		}
+		while (j <= high) {
+			b[k++] = a[j++];
 		}
 
-
-
+	
+		for (int j = 0; j < high;j++) {
+			a[j] = b[j];
+		
+		}
+		delete[]b;
 	}
-	while (j <= n) {
+	
 
-
-		b[k] = a[j];
-		j++;
-		k++;
-
-
-	}
-	while (i <= middle)
-
-	{
-		b[k] = a[i];
-		k++;
-		i++;
-
-	}
-
-	for (i = low, k = 0; i <= n; i++) {
-		a[i] = b[k++];
-
-	}
-	delete[]b;
 }
+void MergeSort(int a[],int low,int high) {
+
+	if (low < high) {
+		int middle = (low + high) / 2;
+		MergeSort(a,low,middle);
+		MergeSort(a,middle+1,high);
+		MergePart(a, low, middle, high);
+	}
+	
+}
+
+
+
 
 	//
 
@@ -89,7 +100,7 @@ int main(){
 
 	int a[] = { 10,9,8,5,2 };
 
-	mergePart(a,0,2,4);
+	MergeSort(a,0,4);
 
 	return 0;
 }
