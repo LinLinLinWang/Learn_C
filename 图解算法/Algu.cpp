@@ -92,14 +92,61 @@ void MergeSort(int a[],int low,int high) {
 
 
 
-	//
+//øÏÀŸ≈≈–Ú
+
+void swap(int &a,int &b) {
+
+	int temp = b;
+	b = a;
+	a = temp;
+}
+
+
+//»°partition
+int Partition(int a[],int low,int high) {
+	int pivot = a[low];
+	int i = low,  j = high;
+	while (i < j) {
+		while (i < j && a[j] >pivot) j--;
+		while (i < j && a[i] <= pivot) i++;
+		if (i < j) {
+			swap(a[i++], a[j--]);
+		}
+	}
+	if (a[i] <= pivot) {
+	
+		swap(a[i],a[low]);
+		return i;
+	}
+	else {
+		swap(a[i-1], a[low]);
+		return i - 1;
+	  
+	
+	}
+
+	
+}
+void   QuicSort(int a[],int low,int high) {
+
+	if (low < high) {
+		int pivot = Partition(a,low,high);
+		QuicSort(a, low, pivot);
+		QuicSort(a,pivot+1,high);
+	
+	
+	
+	}
+
+
+}
 
 
 int main() {
 
-	int a[] = { 1 };
+	int a[] = { 5,7,10,2,3,7};
 
-	MergeSort(a, 0, 0);
+	QuicSort(a, 0, 5);
 	cout << a;
 	return 0;
 }
