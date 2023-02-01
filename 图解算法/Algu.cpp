@@ -42,24 +42,22 @@ void gcd(int a, int b) {
 
 void MergePart(int a[],int low,int middle,int high) {
 	int i = low;
-	int j = middle;
+	int j = middle+1;
 	int k = 0;
-	int *b = new(nothrow) int (high - low+1);
+	int *b = new(nothrow) int [high - low + 1];
 	if (b == NULL) {
-		printf("内存分配失败！");
+		printf("内存分配失败！\n");
 		return;
 	}
-	while (i<=middle&&j<=high) {
-	
-		if (a[i]<=a[j]) {
-			b[k++] = a[i++];
-		
-		
-		}
-		else{
-			b[k++] = a[j++];
+	while (i <= middle && j <= high) {
 
+		if (a[i] <= a[j]) {
+			b[k++] = a[i++];
 		}
+		else {
+			b[k++] = a[j++];
+		}
+	}
 	
 		while (i <= middle) {
 			b[k++] = a[i++];
@@ -70,15 +68,16 @@ void MergePart(int a[],int low,int middle,int high) {
 		}
 
 	
-		for (int j = 0; j < high;j++) {
-			a[j] = b[j];
+		for (int i = low,k=0; i<= high;i++) {
+			a[i] = b[k++];
 		
 		}
-		delete[]b;
+		delete[] b;
+		
 	}
 	
 
-}
+
 void MergeSort(int a[],int low,int high) {
 
 	if (low < high) {
@@ -96,12 +95,12 @@ void MergeSort(int a[],int low,int high) {
 	//
 
 
-int main(){
+int main() {
 
-	int a[] = { 10,9,8,5,2 };
+	int a[] = { 1 };
 
-	MergeSort(a,0,4);
-
+	MergeSort(a, 0, 0);
+	cout << a;
 	return 0;
 }
 
