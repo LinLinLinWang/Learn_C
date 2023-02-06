@@ -3,6 +3,7 @@ using namespace std;
 
 //求最大公约数
 
+/*
 void gcd(int a, int b) {
 	int t = 0;
 	int A = a;
@@ -22,14 +23,16 @@ void gcd(int a, int b) {
 }
 
 
-/*int main() {
+  int main() {
 	gcd(3,5);
 	gcd(5,3);
 	gcd(28,14);
 	gcd(4, 56);
 	return 0;
 
-}*/
+}
+
+
 
 
 
@@ -44,7 +47,8 @@ void MergePart(int a[],int low,int middle,int high) {
 	int i = low;
 	int j = middle+1;
 	int k = 0;
-	int *b = new(nothrow) int [high - low + 1];
+	int* b = NULL;
+	b = new(nothrow) int(high - low + 1);
 	if (b == NULL) {
 		printf("内存分配失败！\n");
 		return;
@@ -89,16 +93,17 @@ void MergeSort(int a[],int low,int high) {
 	
 }
 
-
+*/
 
 
 //快速排序
 
-void swap(int &a,int &b) {
+void swap(int a[], int low,int high)
+{
+	int temp = a[low];
 
-	int temp = b;
-	b = a;
-	a = temp;
+	a[low] = a[high];
+	a[high] = temp;
 }
 
 
@@ -110,32 +115,32 @@ int Partition(int a[],int low,int high) {
 		while (i < j && a[j] >pivot) j--;
 		while (i < j && a[i] <= pivot) i++;
 		if (i < j) {
-			swap(a[i++], a[j--]);
+			swap(a,i++, j--);
 		}
 	}
 	if (a[i] <= pivot) {
-	
-		swap(a[i],a[low]);
+	    
+		swap(a,i,low);
 		return i;
 	}
-	else {
-		swap(a[i-1], a[low]);
+	
+		swap(a,i-1, low);
 		return i - 1;
 	  
 	
-	}
+	
 
 	
 }
-void   QuicSort(int a[],int low,int high) {
+void   QuicSort(int a[], int low, int high) {
 
 	if (low < high) {
-		int pivot = Partition(a,low,high);
-		QuicSort(a, low, pivot);
-		QuicSort(a,pivot+1,high);
-	
-	
-	
+		int pivot = Partition(a, low, high);
+		QuicSort(a, low, pivot - 1);  //规避最后两个数相同的情况，会死循环
+		QuicSort(a, pivot + 1, high);
+
+
+
 	}
 
 
@@ -144,10 +149,10 @@ void   QuicSort(int a[],int low,int high) {
 
 int main() {
 
-	int a[] = { 5,7,10,2,3,7};
+	int a[] = { 10,7,4,2,1,4 };
 
 	QuicSort(a, 0, 5);
-	cout << a;
+	cout << a[0] << a[1] << a[2] << a[3] << a[4] << a[5];
 	return 0;
 }
 
