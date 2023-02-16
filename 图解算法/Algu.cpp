@@ -1,5 +1,112 @@
 #include<iostream>
 using namespace std;
+//老鼠走迷宫
+
+#define MAZECOUNTI 9
+#define MAZECOUNTJ 10
+#define STARTI 1 
+#define STARTJ 1
+#define ENDI 8
+#define ENDJ  10
+#define MAXSIZE 50
+typedef struct local {  //结点坐标
+	int x;
+	int y;
+}LOCAL;
+typedef struct ROUTESTACK {
+	LOCAL data[MAXSIZE];
+	int top;
+
+
+}ROUTESTACK;
+
+ROUTESTACK* InitStack() {
+	ROUTESTACK* stack = (ROUTESTACK*)malloc(sizeof(ROUTESTACK));
+	if (stack == NULL)
+	{
+		printf("栈分配失败！\n");
+		return NULL;
+	}
+	stack->top = -1;
+	return stack;
+}
+
+int EmptyStack(ROUTESTACK *stack) {
+	  
+	if (stack->top == -1) return 1;
+	return 0;
+
+
+}
+
+int IsFull(ROUTESTACK* stack) {
+	if (stack->top == MAXSIZE - 1) return 1;
+	return 0;
+}
+int PushStack(ROUTESTACK *stack,LOCAL *local) {
+
+	if (stack->top < MAXSIZE - 1) {
+		stack->data[++stack->top] = *local;
+		return 1;
+	
+	
+	}
+	else {
+		printf("\033[33;1m 栈空间已满！ 放入失败！\n");
+		return 0;
+	}
+}
+int PopStaclk(ROUTESTACK *stack,LOCAL &temp) {
+	if (stack->top > -1) {
+		temp = stack->data[stack->top];
+		stack->top--;
+		return 1;
+	}
+	else {
+		printf("栈已空！\n");
+		return 0;
+	}
+
+
+
+}
+
+int VisitMaze(int maze[][MAZECOUNTJ],LOCAL path[][MAZECOUNTJ]) {
+
+	int i, j;
+	ROUTESTACK* stack;
+	LOCAL temp;
+	stack = InitStack();
+	temp.x = 0; temp.y = 0;
+	if (maze[STARTI][STARTJ] == 0) {
+		PushStack(stack, &temp);
+	}
+	else return 0;
+	while (!EmptyStack(stack)) {
+		PopStaclk(stack,temp);
+		i = temp.x;
+		j = temp.y;
+		maze[i][j] = 2;
+		if (i == ENDI && J == ENDJ) {
+
+			break;
+		}
+		if (i + 1 <= ENDI && maze[i + 1][j] == 0) {
+			maze[i + 1][j] == 2;
+		  
+		
+		}
+	
+	
+	}
+
+}
+
+
+
+ 
+
+
 
 //求最大公约数
 
@@ -147,17 +254,31 @@ void   QuicSort(int a[], int low, int high) {
 }
 
 
+
+
+
+
+
+
+
+
+
+
 int main() {
 
-	int a[] = { 10,7,4,2,1,4 };
+//	int a[] = { 10,7,4,2,1,4 };
 
-	QuicSort(a, 0, 5);
-	cout << a[0] << a[1] << a[2] << a[3] << a[4] << a[5];
+	//QuicSort(a, 0, 5);
+//	cout << a[0] << a[1] << a[2] << a[3] << a[4] << a[5];
+
+
 	return 0;
 }
 
 
 
+
+//老鼠走迷宫
 
 
 
